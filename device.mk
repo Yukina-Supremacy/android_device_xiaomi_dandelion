@@ -51,6 +51,10 @@ PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
 DEVICE_PACKAGE_OVERLAYS += \
     $(DEVICE_PATH)/overlay
 
+# Camera
+PRODUCT_PACKAGES += \
+    Snap
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.mt6762.rc \
