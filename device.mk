@@ -105,7 +105,7 @@ PRODUCT_COPY_FILES += \
 
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.garden
+    android.hardware.light-service.garden
 
 # KPOC
 PRODUCT_PACKAGES += \
