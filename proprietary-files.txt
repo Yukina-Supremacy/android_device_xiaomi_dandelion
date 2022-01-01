@@ -1,6 +1,18 @@
 # MTK-IMS
+-framework/mediatek-common.jar
+-framework/mediatek-framework.jar
+-framework/mediatek-ims-base.jar
+-framework/mediatek-ims-common.jar
+-framework/mediatek-telecom-common.jar
+-framework/mediatek-telephony-base.jar
+-framework/mediatek-telephony-common.jar
+-priv-app/ImsService/ImsService.apk
 bin/vtservice
 etc/init/init.vtservice.rc
+framework/mediatek-wfo-legacy.jar
+framework/mediatek-ims-wwop-common.jar
+framework/mediatek-ims-extension-plugin.jar
+framework/mediatek-ims-legacy.jar
 lib/libcomutils.so
 lib/libimsma.so
 lib/libimsma_adapt.so
