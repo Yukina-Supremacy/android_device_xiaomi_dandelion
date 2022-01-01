@@ -26,6 +26,9 @@ ro.opengles.version=196610
 ro.zygote.preload.enable=0
 vendor.display.enable_default_color_mode=0
 
+# RIL
+persist.sys.fflag.override.settings_provider_model=false
+
 # IPO
 sys.ipo.disable=1
 
