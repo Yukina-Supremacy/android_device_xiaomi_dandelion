@@ -6,6 +6,9 @@ import /system/etc/init/init.vtservice.rc
 on init
     setprop sys.usb.ffs.aio_compat 1
 
+    # BPF
+    setprop ro.kernel.ebpf.supported true
+
     # boot time fs tune
     write /sys/block/mmcblk0/queue/iostats 0
     write /sys/block/mmcblk0/queue/scheduler cfq
