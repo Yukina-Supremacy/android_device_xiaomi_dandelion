@@ -27,6 +27,7 @@ $(call inherit-product, vendor/xiaomi/garden/garden-vendor.mk)
 
 # Treble
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
+PRODUCT_TARGET_VNDK_VERSION := 29
 PRODUCT_SHIPPING_API_LEVEL := 29
 
 # Dynamic Partitions
