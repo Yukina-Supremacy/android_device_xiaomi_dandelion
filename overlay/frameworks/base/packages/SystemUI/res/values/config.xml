@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-<<<<<<< HEAD
-** Copyright 2015, The Android Open Source Project
-=======
 ** Copyright 2009, 2015, The Android Open Source Project
->>>>>>> 0e7a774 (merlin: Add FPSinfo overlay)
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -28,7 +24,10 @@
     <!-- Doze: does this device support STATE_DOZE?  -->
     <bool name="doze_display_state_supported">true</bool>
 
-<!-- FPSInfoService FPS node file path -->
+    <!-- FPSInfoService FPS node file path -->
     <string name="config_fpsInfoSysNode" translatable="false">/sys/module/primary_display/parameters/display_framerate_main</string>
+
+    <!-- If true, recorder will use AVCLevel42 for encoding-->
+    <bool name="config_screenrecord_codec_profile_avc42">true</bool>
 
 </resources>
