@@ -58,10 +58,6 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(DEVICE_PATH)/overlay-lineage \
     $(DEVICE_PATH)/overlay-nad
 
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
-
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.mt6762.rc \
@@ -151,6 +147,10 @@ PRODUCT_PACKAGES += com.android.tethering.inprocess
 PRODUCT_PACKAGES += \
     WifiOverlay \
     TetheringConfigOverlay
+
+# Camera
+PRODUCT_PACKAGES += \
+    Graphene
 
 # SystemUI
 PRODUCT_PACKAGES += \
