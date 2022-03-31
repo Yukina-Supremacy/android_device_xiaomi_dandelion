@@ -99,6 +99,10 @@ PRODUCT_COPY_FILES += \
 # Properties
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
+# Google Dialer Call recording
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
+
 # Light
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.garden
