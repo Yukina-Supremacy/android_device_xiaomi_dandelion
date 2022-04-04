@@ -225,3 +225,6 @@ persist.log.tag.mtkpower@impl=S
 # HWUI
 debug.hwui.use_hint_manager=true
 debug.hwui.target_cpu_time_percent=30
+
+# Gboard Rounded
+ro.com.google.ime.corner_key_r=35
