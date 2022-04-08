@@ -20,6 +20,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Nusantara stuff
 TARGET_BOOT_ANIMATION_RES := 720
+TARGET_USES_BLUR := true
 NAD_BUILD_TYPE := OFFICIAL
 USE_AOSP_CLOCK := true
 TARGET_SUPPORTS_QUICK_TAP := true
