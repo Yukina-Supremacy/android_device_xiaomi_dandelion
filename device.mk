@@ -14,43 +14,26 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/garden
+DEVICE_PATH := device/xiaomi/dandelion
 
-# Include Dev GSI Keys
-$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
-
-# Enable updating of APEXes
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+# Inherit from garden-common
+$(call inherit-product, device/xiaomi/garden-common/garden-common.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/xiaomi/garden/garden-vendor.mk)
+$(call inherit-product, vendor/xiaomi/dandelion/dandelion-vendor.mk)
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/29/etc/audio_policy_configuration.xml
+    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_EXTRA_VNDK_VERSIONS)/etc/audio_policy_configuration.xml
 
 # Treble
-PRODUCT_EXTRA_VNDK_VERSIONS := 29
-PRODUCT_TARGET_VNDK_VERSION := 29
-PRODUCT_SHIPPING_API_LEVEL := 29
-
-# Dynamic Partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_BUILD_SUPER_PARTITION := false
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1600
-TARGET_SCREEN_WIDTH := 720
+PRODUCT_EXTRA_VNDK_VERSIONS := 30
+PRODUCT_TARGET_VNDK_VERSION := 30
+PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Audio
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_configuration.xml
-
-PRODUCT_PACKAGES += \
-    audio.a2dp.default
-
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -58,136 +41,13 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(DEVICE_PATH)/overlay-lineage \
     $(DEVICE_PATH)/overlay-nad
 
-# Ramdisk
-PRODUCT_PACKAGES += \
-    init.mt6762.rc \
-    init.mt6765.rc \
-    init.safailnet.rc \
-    init.ago.rc \
-    fstab.mt6762 \
-    fstab.mt6765
-
-# DT2W
-PRODUCT_PACKAGES += \
-    DT2W-Service-Garden
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/dt2w/dt2w_event:$(TARGET_COPY_OUT_SYSTEM)/bin/dt2w_event
-
-# Battery
-PRODUCT_PACKAGES += \
-    BatteryHealthOverlay
-
-# Fstab
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/etc/fstab.mt6762:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6762 \
-    $(DEVICE_PATH)/rootdir/etc/fstab.mt6765:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6765
-
-# HIDL
-PRODUCT_PACKAGES += \
-    android.hidl.base@1.0_system \
-    android.hidl.manager@1.0_system
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd
-
 # Prebuilt
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/prebuilt/dtb.img:dtb.img
 
-# Properties
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-
-# Google Dialer Call recording
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
-
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.garden
-
-# KPOC
-PRODUCT_PACKAGES += \
-    libsuspend \
-    android.hardware.health@2.0
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.fingerprint.xml \
-    frameworks/native/data/etc/android.software.picture_in_picture.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.picture_in_picture.xml \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.ethernet.xml \
-    frameworks/native/data/etc/android.hardware.faketouch.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.faketouch.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.multitouch.distinct.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-    frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.telephony.ims.xml \
-    $(DEVICE_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml \
-    $(DEVICE_PATH)/configs/permissions/privapp-permissions-imsinit.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-imsinit.xml \
-    $(DEVICE_PATH)/configs/permissions/com.mediatek.ims.plugin.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.mediatek.ims.plugin.xml \
-    $(DEVICE_PATH)/configs/permissions/com.mediatek.op.ims.common.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.mediatek.op.ims.common.xml \
-    $(DEVICE_PATH)/configs/permissions/com.mediatek.wfo.legacy.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/com.mediatek.wfo.legacy.xml
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/public.libraries-trustonic.txt:$(TARGET_COPY_OUT_SYSTEM)/etc/public.libraries-trustonic.txt
-
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    PresencePolling \
-    RcsService
-
-# Do not spin up a separate process for the network stack, use an in-process APK.
-PRODUCT_PACKAGES += InProcessNetworkStack
-PRODUCT_PACKAGES += com.android.tethering.inprocess
-
-# WiFi
-PRODUCT_PACKAGES += \
-    WifiOverlay \
-    TetheringConfigOverlay
-
-# Camera
-PRODUCT_PACKAGES += \
-    Graphene
-
-# SystemUI
-PRODUCT_PACKAGES += \
-    ScreenRecordOverlay \
-    FPSInfoOverlay
-
-# IORap
-PRODUCT_PRODUCT_PROPERTIES += \
-     ro.iorapd.enable=true
-
-# Input
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/idc/uinput-fpc.idc:system/usr/idc/uinput-fpc.idc \
-    $(DEVICE_PATH)/configs/idc/uinput-focaltech.idc:system/usr/idc/uinput-focaltech.idc
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/keylayout/uinput-fpc.kl:system/usr/keylayout/uinput-fpc.kl \
-    $(DEVICE_PATH)/configs/keylayout/uinput-focaltech.kl:system/usr/keylayout/uinput-focaltech.kl
-
-# Cutout
-PRODUCT_PACKAGES += \
-    NotchBarKiller
-
-# Screen density
-PRODUCT_AAPT_CONFIG := xhdpi
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
-
-# [DNM] Temp permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/permissions/xyz.extras.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/xyz.extras.xml \
-    $(LOCAL_PATH)/permissions/xyz.extras.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/xyz.extras.xml 
-
-# Freeform Multiwindow
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml    
+    android.hardware.light@2.0-service.garden
 
 # Symbols
 PRODUCT_PACKAGES += \
