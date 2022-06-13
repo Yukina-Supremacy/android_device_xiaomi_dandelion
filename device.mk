@@ -51,4 +51,5 @@ PRODUCT_PACKAGES += \
 
 # Symbols
 PRODUCT_PACKAGES += \
-    libshim_mtk_vt_service
+    libshim_mtk_vt_service \
+    libshim_sink
