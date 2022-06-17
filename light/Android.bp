@@ -21,6 +21,5 @@ cc_binary {
         "libhardware",
         "libbase",
         "libbinder_ndk",
-        "android.hardware.light-ndk_platform",
     ],
 }
